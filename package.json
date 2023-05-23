@@ -1,16 +1,23 @@
 {
   "name": "@krist7599555/lodosh",
   "version": "1.0.0",
-  "description": "",
+  "description": "fp typescript utility function with data first + data last",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "wireit"
+    "build": "wireit",
+    "lint": "wireit"
   },
   "wireit": {
     "build": {
-      "command": "tsup ./index.ts --format esm --dts"
+      "command": "tsup ./index.ts --format esm --dts --sourcemap",
+      "dependencies": [
+        "lint"
+      ]
+    },
+    "lint": {
+      "command": "tsc"
     }
   },
   "keywords": [
