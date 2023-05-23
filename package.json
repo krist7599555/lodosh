@@ -1,0 +1,32 @@
+{
+  "name": "@krist7599555/lodosh",
+  "version": "1.0.0",
+  "description": "",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "wireit"
+  },
+  "wireit": {
+    "build": {
+      "command": "tsup ./index.ts --format esm --dts"
+    }
+  },
+  "keywords": [
+    "fp",
+    "lodash",
+    "typescript"
+  ],
+  "author": "Krist Ponpairin",
+  "license": "ISC",
+  "devDependencies": {
+    "@changesets/cli": "^2.26.1",
+    "@effect/data": "^0.12.2",
+    "esbuild": "^0.17.19",
+    "pnpm": "^8.5.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "wireit": "^0.9.5"
+  }
+}
