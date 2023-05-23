@@ -1,5 +1,35 @@
 # @krist7599555/lodosh
 
+[![npm @krist7599555/lodosh](https://img.shields.io/npm/v/@krist7599555/lodosh)](https://www.npmjs.com/package/@krist7599555/lodosh)
+
+```bash
+pnpm i @krist7599555/lodosh
+```
+
+## example
+
+```typescript
+const out1 = pipe(
+  movies,
+  sort_by((it) => [
+    ["desc", it.rate],
+    ["acs", it.name],
+  ])
+);
+const out2 = pipe(
+  students,
+  group_by_with(
+    (it) => it.course,
+    (its) => ({
+      course_name: its[0].cource,
+      average_grade: avg_by(its, (it) => it.grade),
+      students: sort_by(its, (it) => [["asc", it.id]]),
+      students_boys: arr_filter(its, is_match({ gender: "male" })),
+    })
+  )
+);
+```
+
 fp typescript utility function with data first + data last
 
 ```typescript
