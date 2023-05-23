@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.2.0
+
+### Minor Changes
+
+- 5442833: add export mjs
+
 ## 1.1.2
 
 ### Patch Changes
