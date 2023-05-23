@@ -12,7 +12,7 @@
   },
   "wireit": {
     "release": {
-      "command": "changeset publish",
+      "command": "changeset publish --access public",
       "dependencies": [
         "build"
       ]
