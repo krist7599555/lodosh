@@ -347,6 +347,54 @@ export const zip3_with: {
     )
 );
 
+export const record_map: {
+  <K extends string, I, O>(data: Record<K, I>, fn: (it: I) => O): Record<K, O>;
+  <K extends string, I, O>(fn: (it: I) => O): (
+    data: Record<K, I>
+  ) => Record<K, O>;
+} = dual(
+  2,
+  <K extends string, I, O>(
+    data: Record<K, I>,
+    fn: (it: I) => O
+  ): Record<K, O> =>
+    pipe(
+      to_entries(data),
+      arr_map(([k, v]) => [k, fn(v)] as const),
+      to_record
+    )
+);
+
+export const record_map_key: {
+  <KI extends string, KO extends string, V>(
+    data: Record<KI, V>,
+    fn: (it: KI) => KO
+  ): Record<KO, V>;
+  <KI extends string, KO extends string, V>(fn: (it: KI) => KO): (
+    data: Record<KI, V>
+  ) => Record<KO, V>;
+} = dual(
+  2,
+  <KI extends string, KO extends string, V>(
+    data: Record<KI, V>,
+    fn: (it: KI) => KO
+  ): Record<KO, V> =>
+    pipe(
+      to_entries(data),
+      arr_map(([k, v]) => [fn(k), v] as const),
+      to_record
+    )
+);
+
+export const record_keys = <T extends Record<string, any>>(
+  data: T
+): keyof T[] =>
+  // @ts-ignore
+  Object.keys(data);
+
+export const record_values = <K extends string, V>(data: Record<K, V>): V[] =>
+  Object.values<V>(data);
+
 export const is_nonempty_array = <T>(arr: readonly T[]): arr is [T, ...T[]] => {
   return arr.length > 0;
 };

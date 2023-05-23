@@ -73,4 +73,8 @@ export const to_array:
 export const to_jsmap:
 export const zip_with:
 export const zip:
+export const record_values:
+export const record_keys:
+export const record_map:
+export const record_map_key:
 ```
