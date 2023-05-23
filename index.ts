@@ -54,15 +54,11 @@ export const avg_by: {
   return arr.length > 0 ? arr_sum(arr.map(fn)) / arr.length : 0;
 });
 
-export function to_jsmap<Row extends { id: string }>(
+export const to_jsmap = <Row extends { id: string }>(
   arr: readonly Row[]
-): Map<Row["id"], Row> {
+): Map<Row["id"], Row> => {
   return new Map(arr.map((row) => [row.id, row] as const));
-}
-export function entries<T extends object>(data: T): [keyof T, T[keyof T]][] {
-  // @ts-ignore change type to more strict type
-  return Object.entries(data);
-}
+};
 
 export const sort_by: {
   <T>(
@@ -195,20 +191,22 @@ export const group_by_with: {
   }
 );
 
-export function to_record<K extends string, V>(
+export const to_record = <K extends string, V>(
   arr: readonly (readonly [K, V])[]
-): Record<K, V> {
+): Record<K, V> => {
   // @ts-ignore stricker type
   return Object.fromEntries(arr);
-}
-export function to_entries<K extends string, V>(arr: Record<K, V>): [K, V][] {
+};
+export const to_entries = <K extends string, V>(
+  arr: Record<K, V>
+): [K, V][] => {
   // @ts-ignore stricker type
   return Object.entries(arr);
-}
+};
 
-export function promise_all<T>(arr: readonly T[]): Promise<Awaited<T>[]> {
+export const promise_all = <T>(arr: readonly T[]): Promise<Awaited<T>[]> => {
   return Promise.all(arr);
-}
+};
 
 type TPartialMatch<T extends Record<string, unknown>> = {
   [key in keyof T as T[key] extends string | number ? key : never]?: T[key];
@@ -225,9 +223,10 @@ export const is_match: {
     data: T,
     find: TPartialMatch<T>
   ): boolean => {
-    return entries(find).every(([k, v]) => data[k] === v);
+    return to_entries(find).every(([k, v]) => data[k] === v);
   }
 );
+
 export const find_match: {
   <T extends Record<string, unknown>>(
     arr: readonly T[],
@@ -274,33 +273,33 @@ export const zip_with: {
     )
 );
 
-export function is_nonempty_array<T>(arr: readonly T[]): arr is [T, ...T[]] {
+export const is_nonempty_array = <T>(arr: readonly T[]): arr is [T, ...T[]] => {
   return arr.length > 0;
-}
-export function is_nil<T>(arr: T): arr is Extract<T, null | undefined> {
+};
+export const is_nil = <T>(arr: T): arr is Extract<T, null | undefined> => {
   return arr === null || arr === undefined;
-}
-export function is_notnil<T>(arr: T): arr is Exclude<T, null | undefined> {
+};
+export const is_notnil = <T>(arr: T): arr is Exclude<T, null | undefined> => {
   return arr !== null && arr !== undefined;
-}
+};
 
-export function to_array<T>(it: Iterable<T>): T[] {
+export const to_array = <T>(it: Iterable<T>): T[] => {
   return [...it];
-}
-export function noop(..._args: unknown[]): void {
+};
+export const noop = (..._args: unknown[]): void => {
   return;
-}
-export function ensure_nonempty_array<T>(arr: readonly T[]): [T, ...T[]] {
+};
+export const ensure_nonempty_array = <T>(arr: readonly T[]): [T, ...T[]] => {
   if (is_nonempty_array(arr)) {
     return arr;
   } else {
     throw new Error("ensure_nonempty_array");
   }
-}
-export function ensure_notnil<T>(data: T): Exclude<T, null | undefined> {
+};
+export const ensure_notnil = <T>(data: T): Exclude<T, null | undefined> => {
   if (is_notnil(data)) {
     return data;
   } else {
     throw new Error("ensure_notnil");
   }
-}
+};

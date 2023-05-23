@@ -7,11 +7,15 @@
   "sideEffects": false,
   "private": false,
   "scripts": {
+    "change": "wireit",
     "build": "wireit",
     "lint": "wireit",
     "release": "wireit"
   },
   "wireit": {
+    "change": {
+      "command": "changeset add"
+    },
     "release": {
       "command": "changeset publish",
       "dependencies": [
@@ -40,6 +44,7 @@
     "@effect/data": "^0.12.2",
     "esbuild": "^0.17.19",
     "pnpm": "^8.5.1",
+    "ts-doc-gen-md": "^0.0.0",
     "tsup": "^6.7.0",
     "typescript": "^5.0.4",
     "wireit": "^0.9.5"
