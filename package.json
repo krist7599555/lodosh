@@ -6,6 +6,10 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/krist7599555/lodosh.git"
+  },
   "scripts": {
     "change": "wireit",
     "build": "wireit",
