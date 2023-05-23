@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.3.0
+
+### Minor Changes
+
+- 5f442df: export file
+
 ## 1.2.0
 
 ### Minor Changes
