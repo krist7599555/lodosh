@@ -10,10 +10,9 @@ on:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-permissions: read-all|write-all
-
 jobs:
   publish:
+    permissions: read-all|write-all
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
