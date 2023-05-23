@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.5.0
+
+### Minor Changes
+
+- b8329aa: add function record_values, record_keys, record_map, record_map_key
+
 ## 1.4.0
 
 ### Minor Changes
