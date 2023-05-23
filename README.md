@@ -2,8 +2,17 @@
 
 [![npm @krist7599555/lodosh](https://img.shields.io/npm/v/@krist7599555/lodosh)](https://www.npmjs.com/package/@krist7599555/lodosh)
 
+fp typescript utility function with data first + data last
+
 ```bash
 pnpm i @krist7599555/lodosh
+```
+
+all function can be call in datafirst or datalast to make `pipe` function able to infer type correctly
+
+```typescript
+func(data, ...args); // data first
+func(...args)(data); // data last
 ```
 
 ## example
@@ -30,7 +39,7 @@ const out2 = pipe(
 );
 ```
 
-fp typescript utility function with data first + data last
+## functions
 
 ```typescript
 export const arr_filter_map:
