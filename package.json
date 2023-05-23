@@ -35,7 +35,7 @@
       ]
     },
     "build": {
-      "command": "tsup ./index.ts --format esm --dts --sourcemap",
+      "command": "tsup ./index.ts --format esm --dts --dts-resolve --platform browser --sourcemap",
       "dependencies": [
         "lint"
       ]

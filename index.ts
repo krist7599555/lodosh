@@ -1,8 +1,8 @@
 import * as Arr from "@effect/data/ReadonlyArray";
-import { dual, pipe } from "@effect/data/Function";
+import { dual, pipe, constant } from "@effect/data/Function";
+import { omit, pick } from "@effect/data/Struct";
 
-export { constant, pipe } from "@effect/data/Function";
-export { omit, pick } from "@effect/data/Struct";
+export { dual, pipe, constant, omit, pick };
 
 type TNonEmptyArray<T> = [T, ...T[]];
 
