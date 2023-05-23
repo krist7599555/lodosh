@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.4.0
+
+### Minor Changes
+
+- 0b02136: bundle @effect/data
+
 ## 1.3.0
 
 ### Minor Changes
