@@ -7,9 +7,16 @@
   "sideEffects": false,
   "scripts": {
     "build": "wireit",
-    "lint": "wireit"
+    "lint": "wireit",
+    "release": "wireit"
   },
   "wireit": {
+    "release": {
+      "command": "changeset publish",
+      "dependencies": [
+        "build"
+      ]
+    },
     "build": {
       "command": "tsup ./index.ts --format esm --dts --sourcemap",
       "dependencies": [
