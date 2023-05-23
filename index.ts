@@ -78,7 +78,7 @@ export const sort_by: {
       compare(lhs: T, rhs: T) {
         const ll = fn(lhs);
         const rr = fn(rhs);
-        for (const [[dirl, l], [dirr, r]] of Arr.zip(ll, rr)) {
+        for (const [[dirl, l], [dirr, r]] of zip(ll, rr)) {
           if (dirl != "asc" && dirl != "desc")
             throw new Error(
               `can not unknow sort order. expect asc|desc, got ${dirl}`
@@ -142,6 +142,32 @@ export const arr_reduce: {
 } = dual(3, <I, O>(arr: readonly I[], init: O, fn: (acc: O, it: I) => O): O => {
   return arr.reduce(fn, init);
 });
+
+export const arr_cross: {
+  <A, B>(as: readonly A[], bs: readonly B[]): (readonly [A, B])[];
+  <B>(bs: readonly B[]): <A>(as: readonly A[]) => (readonly [A, B])[];
+} = dual(2, <A, B>(as: readonly A[], bs: readonly B[]): (readonly [A, B])[] => {
+  return as.flatMap((a) => bs.map((b) => [a, b]));
+});
+export const arr_cross3: {
+  <A, B, C>(as: readonly A[], bs: readonly B[], cs: readonly C[]): (readonly [
+    A,
+    B,
+    C
+  ])[];
+  <B, C>(bs: readonly B[], cs: readonly C[]): <A>(
+    as: readonly A[]
+  ) => (readonly [A, B, C])[];
+} = dual(
+  3,
+  <A, B, C>(
+    as: readonly A[],
+    bs: readonly B[],
+    cs: readonly C[]
+  ): (readonly [A, B, C])[] => {
+    return as.flatMap((a) => bs.flatMap((b) => cs.map((c) => [a, b, c])));
+  }
+);
 
 export const group_by: {
   <T, K>(arr: readonly T[], get_key: (it: T) => K): [K, TNonEmptyArray<T>][];
@@ -261,15 +287,63 @@ export const zip: {
   )
 );
 
-export const zip_with: {
-  <A, B, C>(as: readonly A[], bs: readonly B[], fn: (a: A, b: B) => C): C[];
-  <A, B, C>(bs: readonly B[], fn: (a: A, b: B) => C): (as: readonly A[]) => C[];
+export const zip3: {
+  <A, B, C>(as: readonly A[], bs: readonly B[], cs: readonly C[]): (readonly [
+    A,
+    B,
+    C
+  ])[];
+  <B, C>(bs: readonly B[], cs: readonly C[]): <A>(
+    as: readonly A[]
+  ) => (readonly [A, B, C])[];
 } = dual(
   3,
-  <A, B, C>(as: readonly A[], bs: readonly B[], fn: (a: A, b: B) => C): C[] =>
+  <A, B, C>(
+    as: readonly A[],
+    bs: readonly B[],
+    cs: readonly C[]
+  ): (readonly [A, B, C])[] =>
+    pipe(
+      range(arr_min([as.length, bs.length, cs.length])),
+      arr_map((i) => [as[i], bs[i], cs[i]] as const)
+    )
+);
+
+export const zip_with: {
+  <A, B, O>(as: readonly A[], bs: readonly B[], fn: (a: A, b: B) => O): O[];
+  <A, B, O>(bs: readonly B[], fn: (a: A, b: B) => O): (as: readonly A[]) => O[];
+} = dual(
+  3,
+  <A, B, O>(as: readonly A[], bs: readonly B[], fn: (a: A, b: B) => O): O[] =>
     pipe(
       zip(as, bs),
       arr_map(([a, b]) => fn(a, b))
+    )
+);
+
+export const zip3_with: {
+  <A, B, C, O>(
+    as: readonly A[],
+    bs: readonly B[],
+    cs: readonly C[],
+    fn: (a: A, b: B, c: C) => O
+  ): O[];
+  <A, B, C, O>(
+    bs: readonly B[],
+    cs: readonly C[],
+    fn: (a: A, b: B, c: C) => O
+  ): (as: readonly A[]) => O[];
+} = dual(
+  4,
+  <A, B, C, O>(
+    as: readonly A[],
+    bs: readonly B[],
+    cs: readonly C[],
+    fn: (a: A, b: B, c: C) => O
+  ): O[] =>
+    pipe(
+      zip3(as, bs, cs),
+      arr_map(([a, b, c]) => fn(a, b, c))
     )
 );
 
