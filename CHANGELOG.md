@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.6.0
+
+### Minor Changes
+
+- 920484e: add more function
+
 ## 1.5.0
 
 ### Minor Changes
