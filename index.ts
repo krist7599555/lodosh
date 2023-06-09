@@ -429,3 +429,22 @@ export const ensure_notnil = <T>(data: T): Exclude<T, null | undefined> => {
 export const wait = (duration_ms: number) => new Promise<void>(resolve => {
   return setTimeout(() => resolve(), duration_ms)
 })
+
+export const str_split: {
+  (str: string, separator: string | RegExp): [string, ...string[]],
+  (separator: string | RegExp): (str: string) => [string, ...string[]],
+} = dual(
+  2,
+  (str: string, separator: string | RegExp): [string, ...string[]] =>
+    // @ts-ignore only way to produce an empty array when a string is passed as separator https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split#description
+    str.split(separator)
+);
+
+export const str_join: {
+  (arr_str: string[], separator: string): string,
+  (separator: string): (arr_str: string[]) => string,
+} = dual(
+  2,
+  (arr_str: string[], separator: string): string =>
+    arr_str.join(separator)
+);
