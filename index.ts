@@ -425,3 +425,7 @@ export const ensure_notnil = <T>(data: T): Exclude<T, null | undefined> => {
     throw new Error("ensure_notnil");
   }
 };
+
+export const wait = (duration_ms: number) => new Promise<void>(resolve => {
+  return setTimeout(() => resolve(), duration_ms)
+})
