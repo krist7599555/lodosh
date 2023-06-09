@@ -8,10 +8,12 @@ type TNonEmptyArray<T> = [T, ...T[]];
 
 export const arr_sum = (arr: readonly number[]): number =>
   arr.reduce((acc, it) => acc + it, 0);
-export const arr_max = (arr: readonly number[]): number =>
-  arr.reduce((acc, it) => Math.max(acc, it), 0);
-export const arr_min = (arr: readonly number[]): number =>
-  arr.reduce((acc, it) => Math.min(acc, it), 0);
+export const arr_max = (arr: readonly number[]): number => {
+  return Math.max(...ensure_nonempty_array(arr));
+}
+export const arr_min = (arr: readonly number[]): number => {
+  return Math.min(...ensure_nonempty_array(arr));
+}
 
 export const max_by: {
   <T>(arr: readonly T[], fn: (it: T) => number): T;
@@ -416,6 +418,13 @@ export const ensure_nonempty_array = <T>(arr: readonly T[]): [T, ...T[]] => {
     return arr;
   } else {
     throw new Error("ensure_nonempty_array");
+  }
+};
+export const ensure_integer = <T>(num: number): number => {
+  if (Number.isInteger(num)) {
+    return num;
+  } else {
+    throw new Error("ensure_integer");
   }
 };
 export const ensure_notnil = <T>(data: T): Exclude<T, null | undefined> => {
