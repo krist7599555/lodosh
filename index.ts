@@ -448,3 +448,34 @@ export const str_join: {
   (arr_str: string[], separator: string): string =>
     arr_str.join(separator)
 );
+
+export const math_ceil = (num: number): number => Math.ceil(num)
+
+export const math_floor = (num: number): number => Math.floor(num)
+
+export const math_max: {
+  (a: number, b: number): number,
+  (a: number): (b: number) => number,
+} = dual(2, Math.max);
+
+export const math_min: {
+  (a: number, b: number): number,
+  (a: number): (b: number) => number,
+} = dual(2, Math.min);
+
+export const math_clamp: {
+  (num: number, min_val: number, max_val: number): number,
+  (min_val: number, max_val: number): (num: number) => number,
+} = dual(3, 
+  (num: number, min_val: number, max_val: number): number => pipe(
+    num,
+    math_max(min_val),
+    math_min(max_val),
+  )
+)
+
+export const math_divmod = (num: number, mod: number): [number, number] => {
+  if (!Number.isInteger(num) && num > 0) throw new Error(`Expect positive integer got ${num}`)
+  if (!Number.isInteger(mod) && num > 0) throw new Error(`Expect positive integer got ${num}`)
+  return [Math.floor(num / mod), num % mod]
+}
