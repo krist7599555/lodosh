@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.7.0
+
+### Minor Changes
+
+- 136c54c: build in strict mode
+
 ## 1.6.0
 
 ### Minor Changes
