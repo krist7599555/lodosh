@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.8.0
+
+### Minor Changes
+
+- 43510bc: record_map add key
+
 ## 1.7.0
 
 ### Minor Changes
