@@ -358,11 +358,11 @@ export const record_map: {
   2,
   <K extends string, I, O>(
     data: Record<K, I>,
-    fn: (it: I) => O
+    fn: (it: I, key: K) => O
   ): Record<K, O> =>
     pipe(
       to_entries(data),
-      arr_map(([k, v]) => [k, fn(v)] as const),
+      arr_map(([k, v]) => [k, fn(v, k)] as const),
       to_record
     )
 );
