@@ -390,13 +390,16 @@ export const record_map_key: {
 
 export const record_keys = <T extends Record<string, any>>(
   data: T
-): keyof T[] =>
+): Extract<keyof T, string>[] =>
   // @ts-ignore
-  Object.keys(data);
+  Object.keys(data).filter(it => typeof it === 'string')
 
 export const record_values = <K extends string, V>(data: Record<K, V>): V[] =>
   Object.values<V>(data);
 
+export const is_empty_array = <T>(arr: readonly T[]): arr is [] => {
+  return arr.length == 0;
+};
 export const is_nonempty_array = <T>(arr: readonly T[]): arr is [T, ...T[]] => {
   return arr.length > 0;
 };
