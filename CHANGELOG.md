@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.8.2
+
+### Patch Changes
+
+- f3bc7fc: add additional key,val
+
 ## 1.8.1
 
 ### Patch Changes
