@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.8.3
+
+### Patch Changes
+
+- 46edb1e: arr_filter_map allow undefined
+
 ## 1.8.2
 
 ### Patch Changes
