@@ -115,12 +115,12 @@ export const arr_map: {
   return arr.map(fn);
 });
 export const arr_filter_map: {
-  <I, O>(fn: (it: I) => O | null): (arr: readonly I[]) => O[];
-  <I, O>(arr: readonly I[], fn: (it: I) => O | null): O[];
-} = dual(2, <I, O>(arr: readonly I[], fn: (it: I) => O | null): O[] => {
+  <I, O>(fn: (it: I) => O | null | undefined): (arr: readonly I[]) => O[];
+  <I, O>(arr: readonly I[], fn: (it: I) => O | null | undefined): O[];
+} = dual(2, <I, O>(arr: readonly I[], fn: (it: I) => O | null | undefined): O[] => {
   return arr
     .map(fn)
-    .filter((it): it is Exclude<typeof it, null> => it !== null);
+    .filter((it): it is Exclude<typeof it, null | undefined> => it !== null && it !== undefined);
 });
 export const arr_filter: {
   <I>(fn: (it: I) => boolean): (arr: readonly I[]) => I[];
