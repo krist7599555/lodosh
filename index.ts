@@ -350,8 +350,8 @@ export const zip3_with: {
 );
 
 export const record_map: {
-  <K extends string, I, O>(data: Record<K, I>, fn: (it: I) => O): Record<K, O>;
-  <K extends string, I, O>(fn: (it: I) => O): (
+  <K extends string, I, O>(data: Record<K, I>, fn: (val: I, key: K) => O): Record<K, O>;
+  <K extends string, I, O>(fn: (val: I, key: K) => O): (
     data: Record<K, I>
   ) => Record<K, O>;
 } = dual(
@@ -370,20 +370,20 @@ export const record_map: {
 export const record_map_key: {
   <KI extends string, KO extends string, V>(
     data: Record<KI, V>,
-    fn: (it: KI) => KO
+    fn: (key: KI, val: V) => KO
   ): Record<KO, V>;
-  <KI extends string, KO extends string, V>(fn: (it: KI) => KO): (
+  <KI extends string, KO extends string, V>(fn: (key: KI, val: V) => KO): (
     data: Record<KI, V>
   ) => Record<KO, V>;
 } = dual(
   2,
   <KI extends string, KO extends string, V>(
     data: Record<KI, V>,
-    fn: (it: KI) => KO
+    fn: (key: KI, val: V) => KO
   ): Record<KO, V> =>
     pipe(
       to_entries(data),
-      arr_map(([k, v]) => [fn(k), v] as const),
+      arr_map(([k, v]) => [fn(k, v), v] as const),
       to_record
     )
 );
