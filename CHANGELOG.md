@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.8.1
+
+### Patch Changes
+
+- 22f60a1: fix record_keys type string only
+
 ## 1.8.0
 
 ### Minor Changes
