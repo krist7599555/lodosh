@@ -1,6 +1,6 @@
 {
   "name": "@krist7599555/lodosh",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "fp typescript utility function with data first + data last",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
