@@ -1,6 +1,6 @@
 {
   "name": "@krist7599555/lodosh",
-  "version": "1.8.3",
+  "version": "1.8.4",
   "description": "fp typescript utility function with data first + data last",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -10,7 +10,6 @@
     "type": "git",
     "url": "https://github.com/krist7599555/lodosh.git"
   },
-  
   "files": [
     "./dist/index.d.ts",
     "./dist/index.mjs",
