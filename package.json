@@ -10,8 +10,11 @@
     "type": "git",
     "url": "https://github.com/krist7599555/lodosh.git"
   },
+  
   "files": [
-    "./dist"
+    "./dist/index.d.ts",
+    "./dist/index.mjs",
+    "./dist/index.mjs.map"
   ],
   "exports": {
     ".": {
