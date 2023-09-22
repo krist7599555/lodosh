@@ -1,5 +1,11 @@
 # @krist7599555/lodosh
 
+## 1.8.4
+
+### Patch Changes
+
+- f2f2d1f: include sourcemap
+
 ## 1.8.3
 
 ### Patch Changes
